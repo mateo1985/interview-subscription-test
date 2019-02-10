@@ -1,0 +1,30 @@
+<div>
+    <h1>
+        Please subscribe for channel
+    </h1>
+    <form class="subscriptions-form" [formGroup]="submissionFormGroup" #ngForm="ngForm" (ngSubmit)="submitForm()">
+      <mat-card>
+        <mat-card-title>Topics</mat-card-title>
+        <mat-selection-list [class.invalid]="isTopicsInvalidState()" (selectionChange)="selectedTopicChanged($event)">
+          <mat-list-option *ngFor="let topic of topics" [value]="topic" checkboxPosition="before">
+            {{topic.displayName}}
+          </mat-list-option>
+        </mat-selection-list>
+        <mat-error class="invalid-font" *ngIf="isTopicsInvalidState()">
+          At least one topic is <strong>required</strong>
+        </mat-error>
+      </mat-card>   
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email"
+                [errorStateMatcher]="matcher">
+        <mat-hint>Provide an email</mat-hint>
+        <mat-error *ngIf="submissionFormGroup.get('email').hasError('email') && !submissionFormGroup.get('email').hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="submissionFormGroup.get('email').hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button>Subscribe</button>
+    </form>
+</div>

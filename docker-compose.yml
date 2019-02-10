@@ -1,0 +1,23 @@
+version: '3'
+services:
+  backend:
+    build: ./mail-subscriptions-api/MailSubscriptionsApi/MailSubscriptionsApi 
+    ports:
+      - "10000:80"
+    depends_on:
+      - db
+    environment:
+      - CORS_ORIGIN=http://localhost:10001
+  frontend:
+    build: ./mail-subscriptions-ui/MailSubscriptionsApp/MailSubscriptionsApp
+    ports:
+      - "10001:80"
+    depends_on:
+      - backend
+  db:
+    build: ./mail-subscriptions-db
+    environment:
+      - ACCEPT_EULA=Y
+        # should not be exposed like this below
+        # this should be changed to some environment variable or pass it in process arguments
+      - SA_PASSWORD=abbTest123
