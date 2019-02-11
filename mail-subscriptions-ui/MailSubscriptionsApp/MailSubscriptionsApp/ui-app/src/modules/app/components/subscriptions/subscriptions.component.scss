@@ -5,6 +5,13 @@
     flex-flow: column;
     width:auto;
     max-width: 500px;
+    mat-card {
+        margin: 10px;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
 }
 .invalid {
     border-color: $invalid-color;

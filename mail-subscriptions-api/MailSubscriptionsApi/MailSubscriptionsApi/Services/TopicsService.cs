@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MailSubscriptionsApi.Data;
+﻿using MailSubscriptionsApi.Data;
 using MailSubscriptionsApi.Models;
+using System.Collections.Generic;
 
 namespace MailSubscriptionsApi.Services
 {
@@ -16,6 +13,9 @@ namespace MailSubscriptionsApi.Services
             this.dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Gets available topics
+        /// </summary>
         public IEnumerable<Topic> Topics
         {
             get { return this.dbContext.Topics; }

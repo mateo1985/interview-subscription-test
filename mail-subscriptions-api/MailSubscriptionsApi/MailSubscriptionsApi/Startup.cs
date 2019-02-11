@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MailSubscriptionsApi.Data;
+﻿using MailSubscriptionsApi.Data;
 using MailSubscriptionsApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace MailSubscriptionsApi
 {
@@ -26,7 +20,7 @@ namespace MailSubscriptionsApi
             this.configuration = configuration;
             this.logger = logger;
         }
-        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -56,6 +50,8 @@ namespace MailSubscriptionsApi
                 app.UseHsts();
             }
 
+            //TODO: cors should be configured not for any header and not for any method. This is system specific
+            //I configured this like below only for demo purposes
             var corsOrigin = this.configuration.GetValue<string>(ConfigurationConstants.CorsOriginKey, string.Empty);
             app.UseCors(policy =>
             {

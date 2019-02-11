@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MailSubscriptionsApi.Services
 {
-    public class MailingService: IMailingService
+    public class MailingService : IMailingService
     {
         private readonly string mailingServiceUrl;
 
@@ -18,6 +18,7 @@ namespace MailSubscriptionsApi.Services
 
         public async Task SendEmailAsync(string destination, string htmlMessage, string subject)
         {
+            //TODO: below are 'magic strings' which should be move to some static class
             var dataToBeSend = new[]
             {
                 new KeyValuePair<string, string>("destination", destination),

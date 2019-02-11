@@ -1,5 +1,8 @@
 @import '../../style-themes';
 
-  .selected {
-      background-color: $selected-background-color;
-  }  
+:host {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+}

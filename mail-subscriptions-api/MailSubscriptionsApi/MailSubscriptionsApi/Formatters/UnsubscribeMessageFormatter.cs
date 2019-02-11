@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MailSubscriptionsApi.Formatters
+﻿namespace MailSubscriptionsApi.Formatters
 {
     public class UnsubscribeMessageFormatter: FormatterBase
     {

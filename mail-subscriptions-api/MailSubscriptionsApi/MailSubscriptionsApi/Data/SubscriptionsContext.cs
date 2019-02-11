@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MailSubscriptionsApi.Data
 {
-    public class SubscriptionsContext: DbContext
+    public class SubscriptionsContext : DbContext
     {
         public SubscriptionsContext(DbContextOptions<SubscriptionsContext> options)
             : base(options)
@@ -15,6 +15,18 @@ namespace MailSubscriptionsApi.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Topic>().Property(x => x.TopicId).ValueGeneratedOnAdd();
+            this.BuildTopics(modelBuilder);
+        }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Topic> Topics { get; set; }
+
+        public DbSet<Subscription> Subscriptions { get; set; }
+
+        private void BuildTopics(ModelBuilder modelBuilder)
+        {
+            //TODO: topics should not be stored like here, there should be separate class for that, id should be assigned automatically
             modelBuilder.Entity<Topic>().HasData(new Topic[]
             {
                 new Topic {DisplayName = "ASP.NET Core", TopicId = 1},
@@ -25,11 +37,5 @@ namespace MailSubscriptionsApi.Data
                 new Topic {DisplayName = "Node.js", TopicId = 6}
             });
         }
-
-        public DbSet<User> Users { get; set; }
-
-        public DbSet<Topic> Topics { get; set; }
-
-        public DbSet<Subscription> Subscriptions { get; set; }
     }
 }

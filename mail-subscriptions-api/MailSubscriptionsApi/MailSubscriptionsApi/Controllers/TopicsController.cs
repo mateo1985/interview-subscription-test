@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MailSubscriptionsApi.Data;
+﻿using MailSubscriptionsApi.Data;
 using MailSubscriptionsApi.Services;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MailSubscriptionsApi.Controllers
 {
@@ -21,8 +17,13 @@ namespace MailSubscriptionsApi.Controllers
             this.topicsService = topicsService;
         }
 
+        /// <summary>
+        /// Get all topics
+        /// </summary>
+        /// <returns>List of topics</returns>
         [HttpGet]
-        public async Task<IActionResult> GetTopics()
+        [ProducesResponseType(200)]
+        public async Task<IActionResult> GetTopicsAsync()
         {
             return this.Ok(this.topicsService.Topics.Select(x => new { id = x.TopicId, displayName = x.DisplayName }));
         }

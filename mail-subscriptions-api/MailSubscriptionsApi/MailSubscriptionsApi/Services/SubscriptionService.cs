@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace MailSubscriptionsApi.Services
 {
-    public class SubscriptionService: ISubscriptionService
+    /// <summary>
+    /// Class responsible for subscription and unsubscription
+    /// </summary>
+    public class SubscriptionService : ISubscriptionService
     {
         private readonly SubscriptionsContext dbContext;
 
@@ -16,9 +19,17 @@ namespace MailSubscriptionsApi.Services
             this.dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Subscribe user for topics
+        /// </summary>
+        /// <param name="userId">User which want to subscribe</param>
+        /// <param name="topics">Topics which will be subscribed</param>
+        /// <returns>Returns token for unsubscribe</returns>
         public async Task<Guid> SubscribeAsync(string userId, int[] topics)
         {
             this.EnsureUserNotExists(userId);
+            this.EnsureTopicsExists(topics);
+
             var unsubscribeToken = Guid.NewGuid();
             var user = new User { UserId = userId, UnsubscribeToken = unsubscribeToken };
             await this.dbContext.Users.AddAsync(user);
@@ -36,6 +47,11 @@ namespace MailSubscriptionsApi.Services
             return unsubscribeToken;
         }
 
+        /// <summary>
+        /// Unsubscribe user
+        /// </summary>
+        /// <param name="userId">User id</param>
+        /// <param name="token">Unsubscribe token</param>
         public async Task UnsubscribeAsync(string userId, Guid token)
         {
             var user = this.dbContext.Users.SingleOrDefault(x => x.UserId == userId && x.UnsubscribeToken == token);
@@ -53,6 +69,18 @@ namespace MailSubscriptionsApi.Services
             if (userExists != null)
             {
                 throw new UserExistsException($"Subscription for user {userId} already exist");
+            }
+        }
+
+        private void EnsureTopicsExists(int[] topics)
+        {
+            foreach (var topic in topics)
+            {
+                var topicFound = this.dbContext.Topics.FirstOrDefault(x => x.TopicId == topic);
+                if (topicFound == null)
+                {
+                    throw new TopicNotExistsException($"Topic id {topic} not exists");
+                }
             }
         }
     }
