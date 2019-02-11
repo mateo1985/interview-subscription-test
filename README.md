@@ -1,7 +1,7 @@
 # interview-subscription-test
 The interview task with subscriptions system.
 
-![alt text](https://github.com/mateo1985/interview-subscription-test/app-schema.PNG "Schema")
+![Schema image](https://github.com/mateo1985/interview-subscription-test/blob/master/app-schema.PNG "Schema")
 
 ##Prerequisites:
 ###If you run docker containers:
