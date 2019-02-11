@@ -14,6 +14,8 @@ The interview task with subscriptions system.
 - angular cli
 - node and npm
 
+If you pull all files from git repository od not change EOL to windows type in *.sh scripts.
+
 ## System description:
 There are four main parts of the application:
 ### REST API backend service:
@@ -52,6 +54,7 @@ System is containerized with docker and docker-compose so it is easily deployabl
 - all sensitive data should be kept in environment variables for user and the best would be when it these are encrypted per user
 - full https should be implemented to communication
 - logging for the system should be extended and maybe logging service should be implemented like elastic search
+- in script.sql should be check if the db already exists
 
 
 ## How to run the project:
