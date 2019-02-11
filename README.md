@@ -14,7 +14,7 @@ The interview task with subscriptions system.
 - angular cli
 - node and npm
 
-If you pull all files from git repository od not change EOL to windows type in *.sh scripts.
+Please make sure that after pulling files from repository in the *.sh scripts in mail-subscriptions-db you have unix end of lines type.
 
 ## System description:
 There are four main parts of the application:
