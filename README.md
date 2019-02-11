@@ -3,18 +3,18 @@ The interview task with subscriptions system.
 
 ![Schema image](https://github.com/mateo1985/interview-subscription-test/blob/master/app-schema.PNG "Schema")
 
-##Prerequisites:
-###If you run docker containers:
+## Prerequisites:
+### If you run docker containers:
 - Docker
 - docker-compose
 
-###If you are testing without docker:
+### If you are testing without docker:
 - ms sql
 - .net core 2.2
 - angular cli
 - node and npm
 
-##System description:
+## System description:
 There are four main parts of the application:
 - REST API backend service
   You can find it under: ./mail-subscriptions-api/MailSubscriptionsApi
@@ -39,7 +39,8 @@ There are four main parts of the application:
 System is containerized with docker and docker-compose so it is easily deployable.
   
 
-##Todo list:
+## Todo list:
+- there are no unit tests for angular components because of lack of time - there are only unit tests for backend part
 - the project is not secure because all connection strings are kept in plaintext. This should be fixed by storing this as environment variables and the best solution would be
   when it would be some secure store or encrypted data per user.
 - on the backend side should be limitation in subscription per minute.
@@ -53,16 +54,16 @@ System is containerized with docker and docker-compose so it is easily deployabl
 - logging for the system should be extended and maybe logging service should be implemented like elastic search
 
 
-##How to run the project:
+## How to run the project:
 
-###Using docker-compose:
+### Using docker-compose:
 - using command line go to root project location
 - type `docker-compose build` and wait some time
 - type `docker-compose up` and wait about 3 minutes
 - after that time go to http://localhost:10001 - this is the front-end part - try to subscribe something
 - you can check if backend works going under http://localhost:10000/api/v1/topics
 
-###Using local system:
+### Using local system:
 - you should have ms sql server with integrated security enabled (for the out of the box configuration is for integrated security and localhost server)
 - go to 'Package Manager Console' in Visual Studio in mail-subscriptions-api/MailSubscriptionsApi/MailSubscriptionsApi.sln and type `update-database`
 - migration should be implemented and the Subscriptions database should be available right now
@@ -73,7 +74,7 @@ System is containerized with docker and docker-compose so it is easily deployabl
 - run project by typing `npm start`
 - go to localhost:4200
 
-##Tested on:
+## Tested on:
 - Docker version 18.06.1-ce, build e68fc7a
 - docker-compose version 1.22.0, build f46880fe
 - windows 10 x64
