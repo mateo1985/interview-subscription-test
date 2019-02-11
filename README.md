@@ -16,25 +16,25 @@ The interview task with subscriptions system.
 
 ## System description:
 There are four main parts of the application:
-- REST API backend service
+### REST API backend service:
   You can find it under: ./mail-subscriptions-api/MailSubscriptionsApi
   It uses asp.net core 2.2, EntityFramework Core. I used the code first approach so i could use migrations.
   When using IIS Express it starts on https://localhost:44322 on debug and connecting to MS SQL on localhost with datatbase Subscriptions.
   You can change these settings in appsettings.json and launchSettings.json
   Important thing for frontend are CORS. This is configured by environment variable CORS_ORIGIN (default set for http://localhost:4200)
   
-- Frontend service
+### Frontend service:
   You can find it under: ./mail-subscriptions-ui/MailSubscriptionsApp
   I am using angular 7 with angular material, and for serving frontend asp.net core 2.2.
   The best approach is to run the `npm start` in ./mail-subscriptions-ui/MailSubscriptionsApp/ui-app. 
   The configuration for the frontend you can find at ./mail-subscriptions-ui/MailSubscriptionsApp/ui-app/src/environment (links and paths to backend)
   
-- mail-subscriptions-db:
+### mail-subscriptions-db:
   You can find it under: ./mail-subscriptions-db
   database containers
   Container with ms sql.
   
-- mailing service which is not exposed in code (limited only for 100 mails) and will be available only for 1 week
+### mailing service which is not exposed in code (limited only for 100 mails) and will be available only for 1 week
   
 System is containerized with docker and docker-compose so it is easily deployable.
   
